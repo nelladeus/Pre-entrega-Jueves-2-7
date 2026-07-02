@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APEX — Academia de Sim-Racing de Élite</title>
+  <meta name="description"
+    content="Apex es una academia de sim-racing de alto rendimiento. Telemetría profesional, instructores reales y entrenamiento basado en datos para pilotos virtuales serios.">
+
+  <!-- ===== FUENTES (Google Fonts) =====
+       - Space Grotesk: tipografía de titulares, técnica y geométrica.
+       - Inter: tipografía de texto / cuerpo, alta legibilidad.
+       - JetBrains Mono: tipografía monoespaciada para datos, telemetría y etiquetas tipo HUD. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- ===== ICONOS (Lucide) =====
+       Librería de iconos lineales vía CDN. Se inicializan en script.js con lucide.createIcons() -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+  <!-- Hoja de estilos propia -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HUD FRAME: marco de esquinas fijo tipo "Heads-Up Display".
+       Es puramente decorativo (aria-hidden) y refuerza la estética
+       de blueprint / panel de carrera en toda la página.
+  ============================================================ -->
+  <div class="hud-frame" aria-hidden="true">
+    <span class="hud-corner hud-corner--tl"></span>
+    <span class="hud-corner hud-corner--tr"></span>
+    <span class="hud-corner hud-corner--bl"></span>
+    <span class="hud-corner hud-corner--br"></span>
+  </div>
+
+  <!-- ============================================================
+       SKIP LINK: accesibilidad, permite saltar la nav con teclado
+  ============================================================ -->
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner container">
+
+      <!-- Logo / marca -->
+      <a href="#hero" class="logo" aria-label="Apex — Inicio">
+        <span class="logo__mark" aria-hidden="true">◢</span>
+        <img src="assets/img/marca.svg" alt="Apex" class="logo__icon">
+        
+      </a>
+
+      <!-- Navegación de escritorio -->
+      <nav class="nav-desktop" aria-label="Navegación principal">
+        <a href="#beneficios">Beneficios</a>
+        <a href="#manifiesto">Manifiesto</a>
+        <a href="#entrenamiento">Entrenamiento</a>
+        <a href="#telemetria">Telemetría</a>
+        <a href="#programas">Programas</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#resultados">Resultados</a>
+      </nav>
+
+      <div class="navbar__actions">
+        <a href="#aplicar" class="btn btn--primary btn--small nav-cta">Aplicar</a>
+
+        <!-- Botón hamburguesa: solo visible en mobile (ver CSS) -->
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false"
+          aria-controls="navMobile">
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú mobile desplegable -->
+    <nav class="nav-mobile" id="navMobile" aria-label="Navegación mobile">
+      <a href="#beneficios">01 — Beneficios</a>
+      <a href="#manifiesto">02 — Manifiesto</a>
+      <a href="#entrenamiento">03 — Entrenamiento</a>
+      <a href="#telemetria">04 — Telemetría</a>
+      <a href="#ingenieria">05 — Ingeniería</a>
+      <a href="#programas">06 — Programas</a>
+      <a href="#equipo">07 — Equipo</a>
+      <a href="#resultados">08 — Resultados</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         SECCIÓN 1 — HERO
+         Fondo negro + grid de blueprint, titular fuerte que filtra
+         al jugador casual, CTA con efecto "scan láser" en hover.
+    ============================================================ -->
+    <section id="hero" class="hero hero--index">
+
+      <!-- Video de fondo (mobile y desktop) -->
+      <div class="hero__bg" aria-hidden="true">
+        <video class="hero__video hero__video--mobile" autoplay loop muted playsinline
+          src="assets/img/herom.mp4"></video>
+        <video class="hero__video hero__video--desktop" autoplay loop muted playsinline
+          src="assets/img/herod.mp4"></video>
+      </div>
+
+      <!-- Grid de fondo tipo plano técnico -->
+      <div class="blueprint-grid" aria-hidden="true"></div>
+
+      <!-- Anotaciones de coordenadas decorativas (estética blueprint) -->
+      <span class="coord coord--tl" aria-hidden="true">LAT 41.5700° N / LONG 5.9706° E</span>
+      <span class="coord coord--br" aria-hidden="true">APX-DOC // REV.01</span>
+
+      <div class="container">
+        <div class="hero__content reveal">
+          <h1 class="hero__title">
+            <span>Dejá de jugar.</span>
+            <span class="text-soft">Empezá a ganar.</span>
+          </h1>
+
+          <p class="hero__subtitle">
+            Entrená con telemetría de nivel profesional y un sistema de datos diseñado para borrar décimas — no para
+            pasar
+            el rato.
+          </p>
+
+          <div class="hero__actions">
+            <a href="#aplicar" class="btn btn--primary btn--laser">
+              <span>Aplicá a la academia</span>
+            </a>
+            <p class="hero__note">Cupos limitados por temporada de análisis.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicador de scroll -->
+      <a href="#manifiesto" class="scroll-cue" aria-hidden="true">
+        <span>SCROLL</span>
+        <span class="scroll-cue__line"></span>
+      </a>
+    </section>
+
+
+    <!-- ============================================================
+         SECCIÓN 1.5 — BENEFICIOS
+         Tarjetas de ventajas. Mobile: scroll horizontal con snap.
+         Desktop: grilla 3×2.
+    ============================================================ -->
+    <section class="beneficios section" id="beneficios" aria-label="Beneficios de entrenar con Apex">
+
+      <!-- Fondo blueprint sutil -->
+      <div class="blueprint-grid blueprint-grid--dense" aria-hidden="true"></div>
+
+      <div class="container">
+        <!-- Título de la sección -->
+        <header class="section__header reveal">
+          <p class="eyebrow">Beneficios</p>
+          <h2 class="section__title">
+            ¿Por qué <span class="beneficios__highlight">entrenar con nosotros</span>?
+          </h2>
+        </header>
+      </div>
+
+      <!-- Track con scroll horizontal en mobile, grilla en desktop -->
+      <ul class="beneficios__track" id="beneficios-track" role="list">
+
+        <!-- Tarjeta 1 -->
+        <li class="beneficios__card reveal">
+          <div class="beneficios__icon-wrap" aria-hidden="true">
+            <img src="assets/img/clock.png" alt="">
+          </div>
+          <h3 class="beneficios__card-title">Mejorá tus tiempos</h3>
+          <p class="beneficios__card-text">
+            Aprendé técnicas de conducción para reducir segundos por vuelta
+          </p>
+        </li>
+
+        <!-- Tarjeta 2 -->
+        <li class="beneficios__card reveal">
+          <div class="beneficios__icon-wrap" aria-hidden="true">
+            <img src="assets/img/control.png" alt="">
+          </div>
+          <h3 class="beneficios__card-title">Entrenamiento personalizado</h3>
+          <p class="beneficios__card-text">
+            Recibí recomendaciones enfocadas en tus necesidades
+          </p>
+        </li>
+
+        <!-- Tarjeta 3 -->
+        <li class="beneficios__card reveal">
+          <div class="beneficios__icon-wrap" aria-hidden="true">
+            <img src="assets/img/grafico.png" alt="">
+          </div>
+          <h3 class="beneficios__card-title">Análisis de telemetría</h3>
+          <p class="beneficios__card-text">
+            Identificá tus errores mediante herramientas profesionales
+          </p>
+        </li>
+
+        <!-- Tarjeta 4 -->
+        <li class="beneficios__card reveal">
+          <div class="beneficios__icon-wrap" aria-hidden="true">
+            <img src="assets/img/auto.png" alt="">
+          </div>
+          <h3 class="beneficios__card-title">Setup profesional</h3>
+          <p class="beneficios__card-text">
+            Aprendé a ajustar tu vehículo y obtener el mejor rendimiento
+          </p>
+        </li>
+
+        <!-- Tarjeta 5 -->
+        <li class="beneficios__card reveal">
+          <div class="beneficios__icon-wrap" aria-hidden="true">
+            <img src="assets/img/compu.png" alt="">
+          </div>
+          <h3 class="beneficios__card-title">Clases online</h3>
+          <p class="beneficios__card-text">
+            Accedé a las sesiones en vivo sin importar en dónde estés
+          </p>
+        </li>
+
+        <!-- Tarjeta 6 -->
+        <li class="beneficios__card reveal">
+          <div class="beneficios__icon-wrap" aria-hidden="true">
+            <img src="assets/img/casco.png" alt="">
+          </div>
+          <h3 class="beneficios__card-title">Experiencia competitiva</h3>
+          <p class="beneficios__card-text">
+            Nuestros mentores cuentan con experiencia en ligas de alto nivel
+          </p>
+        </li>
+
+      </ul>
+
+      <!-- Dots de paginación: visibles solo en mobile -->
+      <div class="beneficios__dots" id="beneficios-dots" aria-hidden="true">
+        <span class="beneficios__dot active"></span>
+        <span class="beneficios__dot"></span>
+        <span class="beneficios__dot"></span>
+        <span class="beneficios__dot"></span>
+        <span class="beneficios__dot"></span>
+        <span class="beneficios__dot"></span>
+      </div>
+
+    </section>
+
+
+    <!-- ============================================================
+         SECCIÓN 2 — FILTRO DE AUDIENCIA / MANIFIESTO
+         Dos columnas: para quién es Apex / para quién no es.
+    ============================================================ -->
+    <section id="manifiesto" class="manifesto section">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">El manifiesto</p>
+          <h2 class="section__title">¿<span class="text-soft">Para quién</span> es Apex?</h2>
+          <p class="section__lead">No es para todos. Y ese es exactamente el punto.</p>
+        </header>
+
+        <div class="manifesto__grid">
+          <!-- Columna "para vos" -->
+          <article class="manifesto__col manifesto__col--yes reveal">
+            <h3>
+              <i data-lucide="check-circle-2" aria-hidden="true"></i>
+              Esto es para vos si...
+            </h3>
+            <ul>
+              <li>Ya competís y querés bajar tiempos, no solo divertirte un rato.</li>
+              <li>Estás cansado de "tips de YouTube" sueltos y querés un método real.</li>
+              <li>Apuntás a e-sports y necesitás estructura, no improvisación.</li>
+              <li>Entendés que la consistencia se entrena con datos, no con suerte.</li>
+            </ul>
+          </article>
+
+          <!-- Columna "no es para vos" -->
+          <article class="manifesto__col manifesto__col--no reveal">
+            <h3>
+              <i data-lucide="x-circle" aria-hidden="true"></i>
+              Quizás no sea la mejor opción si...
+            </h3>
+            <ul>
+              <li>Buscás un setup para jugar el fin de semana sin compromiso.</li>
+              <li>Te alcanza con ganarle a tus amigos en partidas casuales.</li>
+              <li>No estás dispuesto/a a revisar tu propia telemetría y corregir errores.</li>
+              <li>Preferís el modo arcade antes que la física real de un simulador.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECCIÓN 2.5 — ENTRENAMIENTO
+         (Sección vacía por ahora)
+    ============================================================ -->
+    <div class="entrenamiento-wrapper">
+    <section id="entrenamiento" class="entrenamiento section">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Metodología de entrenamiento</p>
+          <h2 class="section__title">El paso a <span class="text-soft">paso</span>.</h2>
+        </header>
+        <!-- Línea de tiempo: mobile = vertical, desktop = horizontal -->
+        <div class="timeline reveal" id="trainingTimeline" aria-label="Línea de tiempo de entrenamiento">
+          <div class="timeline__track">
+            <div class="timeline__line" aria-hidden="true"></div>
+
+            <div class="timeline__points" aria-hidden="true">
+              <div class="timeline__point" data-step="1"></div>
+              <div class="timeline__point" data-step="2"></div>
+              <div class="timeline__point" data-step="3"></div>
+              <div class="timeline__point" data-step="4"></div>
+            </div>
+
+
+
+            <div class="timeline__items">
+<article class="timeline__item">
+  <div class="timeline__item-inner">
+    <div class="timeline__meta">
+      <span class="timeline__num">01</span>
+      <p class="timeline__text"><span>Evaluamos </span><span>tu nivel</span></p>
+    </div>
+    <div class="img-frame is-loaded">
+      <img src="assets/img/1evaluamos.jpg" alt="Evaluamos tu nivel">
+    </div>
+  </div>
+</article>
+
+<article class="timeline__item">
+  <div class="timeline__item-inner">
+    <div class="timeline__meta">
+      <span class="timeline__num">02</span>
+      <p class="timeline__text"><span>Analizamos tus giros</span></p>
+    </div>
+    <div class="img-frame is-loaded">
+      <img src="assets/img/2analizamos.jpg" alt="Analizamos tus vueltas">
+    </div>
+  </div>
+</article>
+
+<article class="timeline__item">
+  <div class="timeline__item-inner">
+    <div class="timeline__meta">
+      <span class="timeline__num">03</span>
+      <p class="timeline__text"><span>Marcamos </span><span>tus fallas</span></p>
+    </div>
+    <div class="img-frame is-loaded">
+      <img src="assets/img/3marcamos.jpg" alt="Marcamos tus errores">
+    </div>
+  </div>
+</article>
+
+<article class="timeline__item">
+  <div class="timeline__item-inner">
+    <div class="timeline__meta">
+      <span class="timeline__num">04</span>
+      <p class="timeline__text"><span>Creamos tu estrategia</span></p>
+    </div>
+    <div class="img-frame is-loaded">
+      <img src="assets/img/4estrategia.jpg" alt="Creamos una estrategia">
+    </div>
+  </div>
+</article>
+          </div>
+        </div>
+      </div>
+    </section>
+   </div>
+
+    <!-- ============================================================
+         SECCIÓN 3 — TELEMETRÍA (elemento interactivo / firma de la página)
+         Simulación de un panel de telemetría en tiempo real con
+         gráficos SVG que se "dibujan" al entrar en viewport.
+    ============================================================ -->
+    <section id="telemetria" class="telemetry section">
+      <div class="blueprint-grid blueprint-grid--dense" aria-hidden="true"></div>
+
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">El arma secreta</p>
+          <h2 class="section__title"><span class="text-soft">Telemetría real</span>, vuelta por vuelta.</h2>
+          <p class="section__lead">
+            Cada sesión queda registrada. Frenada, acelerador, ángulo de giro: comparamos tu traza
+            contra la línea óptima y te mostramos, en datos, dónde estás perdiendo el tiempo.
+          </p>
+        </header>
+
+        <!-- Panel / dashboard de telemetría simulado -->
+        <div class="dashboard reveal" id="telemetryDashboard">
+          <div class="dashboard__head">
+            <span class="dashboard__dot" aria-hidden="true"></span>
+            <span>PANEL APEX — SPA-FRANCORCHAMPS // SECTOR 2</span>
+            <span class="dashboard__live" id="dashboardLiveTag">PRIMERA CLASE</span>
+          </div>
+
+          <!-- Canal: FRENO (novato vs final) -->
+          <div class="channel channel--compare">
+            <div class="channel__label">
+              <span>Freno</span>
+              <span class="channel__value" data-readout="brake">0%</span>
+            </div>
+            <div class="chart-compare" role="img" aria-label="Comparación frenada: novato vs final">
+              <svg class="chart-compare__novice channel__chart" viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true">
+                <g class="chart-grid">
+                  <line x1="0" y1="22.5" x2="400" y2="22.5"></line>
+                  <line x1="0" y1="45" x2="400" y2="45"></line>
+                  <line x1="0" y1="67.5" x2="400" y2="67.5"></line>
+                </g>
+                <path class="chart-path chart-path--brake chart-path--novice" d="M0,85 L20,84 L40,30 L55,12 L70,10 L85,40 L110,80 L140,83 L170,82 L190,20 L210,8 L230,15 L260,78 L290,82 L320,81 L345,18 L365,9 L400,82"></path>
+              </svg>
+
+              <svg class="chart-compare__final channel__chart" viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true">
+                <g class="chart-grid">
+                  <line x1="0" y1="22.5" x2="400" y2="22.5"></line>
+                  <line x1="0" y1="45" x2="400" y2="45"></line>
+                  <line x1="0" y1="67.5" x2="400" y2="67.5"></line>
+                </g>
+                <path class="chart-path chart-path--brake chart-path--final" d="M0,20 L20,18 L40,55 L70,40 L100,30 L140,28 L180,32 L220,30 L260,28 L300,20 L340,18 L380,22 L400,20"></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Canal: ACELERADOR (novato vs final) -->
+          <div class="channel channel--compare">
+            <div class="channel__label">
+              <span>Acelerador</span>
+              <span class="channel__value" data-readout="throttle">0%</span>
+            </div>
+            <div class="chart-compare" role="img" aria-label="Comparación acelerador: novato vs final">
+              <svg class="chart-compare__novice channel__chart" viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true">
+                <g class="chart-grid">
+                  <line x1="0" y1="22.5" x2="400" y2="22.5"></line>
+                  <line x1="0" y1="45" x2="400" y2="45"></line>
+                  <line x1="0" y1="67.5" x2="400" y2="67.5"></line>
+                </g>
+                <path class="chart-path chart-path--throttle chart-path--novice" d="M0,10 L20,12 L40,70 L55,85 L70,84 L85,55 L110,15 L140,9 L170,10 L190,75 L210,86 L230,80 L260,14 L290,9 L320,11 L345,72 L365,84 L400,12"></path>
+              </svg>
+
+              <svg class="chart-compare__final channel__chart" viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true">
+                <g class="chart-grid">
+                  <line x1="0" y1="22.5" x2="400" y2="22.5"></line>
+                  <line x1="0" y1="45" x2="400" y2="45"></line>
+                  <line x1="0" y1="67.5" x2="400" y2="67.5"></line>
+                </g>
+                <path class="chart-path chart-path--throttle chart-path--final" d="M0,20 L20,22 L40,24 L60,26 L100,30 L140,32 L180,34 L220,36 L260,38 L300,40 L340,42 L380,44 L400,44"></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Canal: GIRO DE VOLANTE (novato vs final) -->
+          <div class="channel channel--compare">
+            <div class="channel__label">
+              <span>Giro de volante</span>
+              <span class="channel__value" data-readout="steering">0°</span>
+            </div>
+            <div class="chart-compare" role="img" aria-label="Comparación giro de volante: novato vs final">
+              <svg class="chart-compare__novice channel__chart" viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true">
+                <g class="chart-grid">
+                  <line x1="0" y1="45" x2="400" y2="45"></line>
+                </g>
+                <path class="chart-path chart-path--steering chart-path--novice" d="M0,45 L30,45 L50,15 L75,15 L95,45 L130,45 L150,80 L180,80 L205,45 L240,45 L260,20 L290,20 L315,45 L350,45 L370,70 L400,70"></path>
+              </svg>
+
+              <svg class="chart-compare__final channel__chart" viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true">
+                <g class="chart-grid">
+                  <line x1="0" y1="45" x2="400" y2="45"></line>
+                </g>
+                <path class="chart-path chart-path--steering chart-path--final" d="M0,45 L60,45 L120,40 L180,38 L240,36 L300,36 L360,38 L400,40"></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Línea vertical "playhead" que recorre el panel -->
+          <div class="dashboard__playhead" aria-hidden="true"></div>
+
+          <p class="dashboard__caption">Vista simulada del panel de telemetría Apex. Comparativa entre tus resultados en la primer clase, y cómo se verían el último día de clases.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECCIÓN 4 — INGENIERÍA APEX: SIMULADORES (Blueprint Show)
+         Placeholders de imágenes/planos técnicos de cada componente.
+    ============================================================ -->
+    <section id="ingenieria" class="hardware section">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Ingeniería Apex</p>
+          <h2 class="section__title">El hardware que <span class="text-soft">separa entrenar de jugar</span>.</h2>
+          <p class="section__lead">
+            No vas a mejorar tus reflejos con un volante de juguete. Nuestros simuladores están
+            construidos con los mismos estándares que usan equipos profesionales.
+          </p>
+        </header>
+
+        <div class="hw-console reveal">
+
+          <div class="hw-console__menu">
+            <p class="hw-console__menu-title">// SELECCIONAR COMPONENTE_</p>
+
+            <button onclick="switchHardware('volante')" id="btn-volante" class="hw-console__btn active">
+              <span class="hw-console__btn-sub">SYS_01 // CORRECCIÓN</span>
+              <span class="hw-console__btn-main">Volante Direct Drive</span>
+            </button>
+
+            <button onclick="switchHardware('pedalera')" id="btn-pedalera" class="hw-console__btn">
+              <span class="hw-console__btn-sub">SYS_02 // PRESIÓN</span>
+              <span class="hw-console__btn-main">Pedalera Celda de Carga</span>
+            </button>
+
+            <button onclick="switchHardware('chasis')" id="btn-chasis" class="hw-console__btn">
+              <span class="hw-console__btn-sub">SYS_03 // RIGIDEZ</span>
+              <span class="hw-console__btn-main">Chasis de Aluminio</span>
+            </button>
+          </div>
+
+          <div class="hw-console__display">
+            <div class="hw-console__corner hw-console__corner--tl"></div>
+            <div class="hw-console__corner hw-console__corner--tr"></div>
+            <div class="hw-console__corner hw-console__corner--bl"></div>
+            <div class="hw-console__corner hw-console__corner--br"></div>
+
+            <span class="hw-console__feed-tag">// LIVE_RENDER_FEED</span>
+
+            <div class="hw-console__img-wrapper img-frame img-frame--portrait is-loaded" id="blueprintFrame"
+              data-label="DIAGRAM_FEED">
+              <video id="hw-blueprint-media" autoplay loop muted playsinline aria-label="Plano Técnico de Ingeniería Apex">
+                <source id="hw-blueprint-source" src="assets/img/volante.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="hw-console__coords">
+              <span>X: 104.22 // Y: 890.11</span>
+              <span>SCALE: 1:1_PRO</span>
+            </div>
+          </div>
+
+          <div class="hw-console__details">
+            <div class="hw-console__details-top">
+              <span class="hw-console__telemetry-tag">TELEMETRÍA CRÍTICA</span>
+              <h3 id="hw-title" class="hw-console__title">Volante Direct Drive</h3>
+              <p id="hw-spec" class="hw-console__spec">20 Nm <span class="hw-console__spec-unit">TORQUE MÁXIMO</span>
+              </p>
+              <p id="hw-desc" class="hw-console__desc">
+                Sentís cada pérdida de agarre y subviraje milisegundos antes de que pase en el simulador, permitiéndote
+                corregir trayectorias de forma predictiva, no reactiva.
+              </p>
+             
+            </div>
+
+        
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECCIÓN DETALLE TÉCNICO
+    ============================================================ -->
+    <section id="detalle-tecnico" class="detalle-tecnico section">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Ingeniería APEX</p>
+          <h2 class="section__title"><span class="text-soft">Detalle</span> técnico.</h2>
+        </header>
+
+<div class="img-compare reveal" id="imgCompareContainer">
+  <img src="assets/img/volante-blueprint.jpg" alt="Blueprint del volante" class="img-compare__bg">
+  <img src="assets/img/volante-foto.png" alt="Foto real del volante" class="img-compare__fg">
+
+  <div class="img-compare__handle">
+    <div class="img-compare__handle-btn">
+      <i data-lucide="chevrons-left-right"></i>
+    </div>
+  </div>
+
+  <input type="range" min="0" max="100" value="50" class="img-compare__slider" id="imgCompareSlider"
+    aria-label="Comparar imágenes">
+</div>
+
+<div class="img-compare reveal" id="imgCompareContainerPedales">
+  <img src="assets/img/pedales-blueprint.jpg" alt="Blueprint de los pedales" class="img-compare__bg">
+  <img src="assets/img/pedales-foto.jpg" alt="Foto real de los pedales" class="img-compare__fg">
+
+  <div class="img-compare__handle">
+    <div class="img-compare__handle-btn">
+      <i data-lucide="chevrons-left-right"></i>
+    </div>
+  </div>
+
+  <input type="range" min="0" max="100" value="50" class="img-compare__slider" id="imgCompareSliderPedales"
+    aria-label="Comparar imágenes de pedales">
+</div>
+
+<div class="img-compare reveal" id="imgCompareContainerChasis">
+  <img src="assets/img/chasis-blueprint.jpg" alt="Blueprint del chasis" class="img-compare__bg">
+  <img src="assets/img/chasis-foto.jpg" alt="Foto real del chasis" class="img-compare__fg">
+
+  <div class="img-compare__handle">
+    <div class="img-compare__handle-btn">
+      <i data-lucide="chevrons-left-right"></i>
+    </div>
+  </div>
+
+  <input type="range" min="0" max="100" value="50" class="img-compare__slider" id="imgCompareSliderChasis"
+    aria-label="Comparar imágenes de chasis">
+</div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECCIÓN VIDEO SCROLL-DRIVEN
+         Va entre Ingeniería y Programas
+    ============================================================ -->
+    <section class="scroll-video-wrapper section" id="scrollVideoWrapper">
+      <div class="scroll-video-sticky">
+        <div class="container">
+          <header class="scroll-video__header">
+            <p class="eyebrow">Tu simulador, tus reglas</p>
+            <h2 class="section__title">Diseñado <span class="text-soft">para vos</span>.</h2>
+          </header>
+        </div>
+        <div class="scroll-video-frame">
+          <div class="hw-console__corner hw-console__corner--tl"></div>
+          <div class="hw-console__corner hw-console__corner--tr"></div>
+          <div class="hw-console__corner hw-console__corner--bl"></div>
+          <div class="hw-console__corner hw-console__corner--br"></div>
+
+          <span class="hw-console__feed-tag">// LIVE_RENDER_FEED</span>
+
+          <video class="scroll-video" id="scrollVideo" muted playsinline preload="auto">
+            <source src="assets/img/Personalizacion.mp4" type="video/mp4">
+          </video>
+
+          <div class="hw-console__coords">
+            <span>X: 104.22 // Y: 890.11</span>
+            <span>SCALE: 1:1_PRO</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+
+
+    <!-- ============================================================
+         SECCIÓN 5 — PROGRAMAS DE ALTO RENDIMIENTO
+         3 tarjetas tipo "placa de circuito" / plano técnico.
+    ============================================================ -->
+    <section id="programas" class="programs section">
+       <div class="blueprint-grid blueprint-grid--dense" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Programas</p>
+          <h2 class="section__title">Elegí tu nivel de <span class="text-soft">compromiso</span>.</h2>
+          <p class="section__lead">Los tres incluyen acceso al hub de telemetría y análisis de datos real.</p>
+        </header>
+
+        <div class="programs__grid">
+
+          <!-- Programa 1 -->
+          <article class="plan-card reveal">
+            <p class="plan-card__code">APX / 01</p>
+            <h3>Telemetría Básica</h3>
+            <p class="plan-card__desc">Para arrancar a entrenar en serio.</p>
+            <p class="plan-card__price"><span>Desde</span> U$S210 <span>/ mes</span></p>
+            <div class="plan-card__media">
+              <img src="assets/img/curso1.jpg" alt="" class="plan-card__image" aria-hidden="true">
+            </div>
+            <a href="#aplicar" class="btn btn--ghost">Aplicar a este plan</a>
+          </article>
+
+          <!-- Programa 2 (destacado) -->
+          <article class="plan-card plan-card--featured reveal">
+            <p class="plan-card__badge">Más elegido</p>
+            <p class="plan-card__code">APX / 02</p>
+            <h3>Piloto de Pista</h3>
+            <p class="plan-card__desc">Bajá tus tiempos con feedback constante.</p>
+            <p class="plan-card__price"><span>Desde</span> U$S490 <span>/ mes</span></p>
+            <div class="plan-card__media">
+              <img src="assets/img/curso2.jpg" alt="" class="plan-card__image" aria-hidden="true">
+            </div>
+            <a href="detalle.html" class="btn btn--primary">Aplicar a este plan</a>
+          </article>
+
+          <!-- Programa 3 -->
+          <article class="plan-card reveal">
+            <p class="plan-card__code">APX / 03</p>
+            <h3>Escudería Apex</h3>
+            <p class="plan-card__desc">Mentoría completa para apuntar a e-sports.</p>
+            <p class="plan-card__price"><span>Desde</span> U$S720 <span>/ mes</span></p>
+            <div class="plan-card__media">
+              <img src="assets/img/curso3.jpg" alt="" class="plan-card__image" aria-hidden="true">
+            </div>
+            <a href="#aplicar" class="btn btn--ghost">Aplicar a este plan</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section id="equipo" class="human-factor section">
+      <div class="container">
+        <header class="section__header section__header--center reveal">
+          <h2 class="section__title">Atrás de los datos, hay <span class="text-soft">pilotos reales enseñando</span>.</h2>
+        </header>
+
+        <div class="photo-grid reveal">
+          <div class="professor-card">
+            <img src="assets/img/profe1.png" alt="Profesor 1">
+            <div class="professor-card__overlay">
+              <h3 class="professor-card__name">Santiago Arce</h3>
+              <p class="professor-card__specialty">Gestión del acelerador y transferencia de peso</p>
+            </div>
+          </div>
+
+          <div class="professor-card">
+            <img src="assets/img/profe2.png" alt="Profesor 2">
+            <div class="professor-card__overlay">
+              <h3 class="professor-card__name">Nicolás Ferraro</h3>
+              <p class="professor-card__specialty">Telemetría y análisis de datos</p>
+            </div>
+          </div>
+
+          <div class="professor-card">
+            <img src="assets/img/profe3.png" alt="Profesor 3">
+            <div class="professor-card__overlay">
+              <h3 class="professor-card__name">Carolina Bruno</h3>
+              <p class="professor-card__specialty">Salidas, relanzamientos y primeras vueltas</p>
+            </div>
+          </div>
+
+          <div class="professor-card">
+            <img src="assets/img/profe4.png" alt="Profesor 4">
+            <div class="professor-card__overlay">
+              <h3 class="professor-card__name">Paula Montenegro</h3>
+              <p class="professor-card__specialty">Reglamentos deportivos y etiqueta en pista</p>
+            </div>
+          </div>
+
+          <div class="professor-card">
+            <img src="assets/img/profe5.png" alt="Profesor 5">
+            <div class="professor-card__overlay">
+              <h3 class="professor-card__name">Martín Salvatierra</h3>
+              <p class="professor-card__specialty">Clasificación y vuelta rápida</p>
+            </div>
+          </div>
+
+          <div class="professor-card">
+            <img src="assets/img/profe6.png" alt="Profesor 6">
+            <div class="professor-card__overlay">
+              <h3 class="professor-card__name">Valeria Sosa</h3>
+              <p class="professor-card__specialty">Configuración del vehículo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECCIÓN 7 — PRUEBA SOCIAL / CASOS DE ÉXITO
+         Carrusel de resultados con mejora de tiempos.
+    ============================================================ -->
+    <section id="resultados" class="results section">
+      <div class="container">
+        <header class="section__header section__header--center reveal">
+          <h2 class="section__title">Los números <span class="text-soft">no mienten</span>.</h2>
+          <p class="section__lead">Resultados reales de pilotos que entrenaron con el método Apex.</p>
+        </header>
+      </div>
+
+      <!-- Carrusel: track con scroll horizontal + controles -->
+      <div class="steering-wheel-orbit reveal">
+        <!-- Contenedor orbital: las cards giran alrededor del volante -->
+        <div class="orbit-container">
+          <div class="orbit-ring">
+            <!-- Cards que orbitan - agregué 8 para completar el círculo -->
+            <article class="result-card orbit-item" style="--orbit-index: 0">
+              <div class="img-frame img-frame--circle" data-label="foto-lucas.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-lucas.jpg" alt="Foto de Lucas R.">
+              </div>
+              <p class="result-card__track">Spa-Francorchamps</p>
+              <p class="result-card__delta" data-count="-1.2">−1.2s</p>
+              <p class="result-card__name">Lucas R. — 4 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 1">
+              <div class="img-frame img-frame--circle" data-label="foto-martina.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-martina.jpg" alt="Foto de Martina G.">
+              </div>
+              <p class="result-card__track">Suzuka</p>
+              <p class="result-card__delta" data-count="-0.9">−0.9s</p>
+              <p class="result-card__name">Martina G. — 3 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 2">
+              <div class="img-frame img-frame--circle" data-label="foto-federico.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-federico.jpg" alt="Foto de Federico A.">
+              </div>
+              <p class="result-card__track">Nürburgring Nordschleife</p>
+              <p class="result-card__delta" data-count="-2.1">−2.1s</p>
+              <p class="result-card__name">Federico A. — 6 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 3">
+              <div class="img-frame img-frame--circle" data-label="foto-sol.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-sol.jpg" alt="Foto de Sol M.">
+              </div>
+              <p class="result-card__track">Interlagos</p>
+              <p class="result-card__delta" data-count="-0.7">−0.7s</p>
+              <p class="result-card__name">Sol M. — 2 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 4">
+              <div class="img-frame img-frame--circle" data-label="foto-joaquin.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-joaquin.jpg" alt="Foto de Joaquín P.">
+              </div>
+              <p class="result-card__track">Monza</p>
+              <p class="result-card__delta" data-count="-1.5">−1.5s</p>
+              <p class="result-card__name">Joaquín P. — 5 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 5">
+              <div class="img-frame img-frame--circle" data-label="foto-valeria.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-valeria.jpg" alt="Foto de Valeria S.">
+              </div>
+              <p class="result-card__track">Silverstone</p>
+              <p class="result-card__delta" data-count="-0.8">−0.8s</p>
+              <p class="result-card__name">Valeria S. — 3 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 6">
+              <div class="img-frame img-frame--circle" data-label="foto-carlos.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-carlos.jpg" alt="Foto de Carlos H.">
+              </div>
+              <p class="result-card__track">Barcelona</p>
+              <p class="result-card__delta" data-count="-1.8">−1.8s</p>
+              <p class="result-card__name">Carlos H. — 7 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 7">
+              <div class="img-frame img-frame--circle" data-label="foto-ana.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-ana.jpg" alt="Foto de Ana R.">
+              </div>
+              <p class="result-card__track">Red Bull Ring</p>
+              <p class="result-card__delta" data-count="-1.1">−1.1s</p>
+              <p class="result-card__name">Ana R. — 4 semanas</p>
+            </article>
+
+<article class="result-card orbit-item" style="--orbit-index: 8">
+              <div class="img-frame img-frame--circle" data-label="foto-pedro.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-pedro.jpg" alt="Foto de Pedro L.">
+              </div>
+              <p class="result-card__track">Paul Ricard</p>
+              <p class="result-card__delta" data-count="-1.3">−1.3s</p>
+              <p class="result-card__name">Pedro L. — 4 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 9">
+              <div class="img-frame img-frame--circle" data-label="foto-lucia.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-lucia.jpg" alt="Foto de Lucía M.">
+              </div>
+              <p class="result-card__track">Mugello</p>
+              <p class="result-card__delta" data-count="-0.6">−0.6s</p>
+              <p class="result-card__name">Lucía M. — 2 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 10">
+              <div class="img-frame img-frame--circle" data-label="foto-diego.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-diego.jpg" alt="Foto de Diego R.">
+              </div>
+              <p class="result-card__track">Hungaroring</p>
+              <p class="result-card__delta" data-count="-1.9">−1.9s</p>
+              <p class="result-card__name">Diego R. — 5 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 11">
+              <div class="img-frame img-frame--circle" data-label="foto-sofia.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-sofia.jpg" alt="Foto de Sofía P.">
+              </div>
+              <p class="result-card__track">Zandvoort</p>
+              <p class="result-card__delta" data-count="-1.4">−1.4s</p>
+              <p class="result-card__name">Sofía P. — 4 semanas</p>
+            </article>
+
+<article class="result-card orbit-item" style="--orbit-index: 0">
+              <div class="img-frame img-frame--circle" data-label="foto-lucas.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-lucas.jpg" alt="Foto de Lucas R.">
+              </div>
+              <p class="result-card__track">Spa-Francorchamps</p>
+              <p class="result-card__delta" data-count="-1.2">−1.2s</p>
+              <p class="result-card__name">Lucas R. — 4 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 1">
+              <div class="img-frame img-frame--circle" data-label="foto-martina.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-martina.jpg" alt="Foto de Martina G.">
+              </div>
+              <p class="result-card__track">Suzuka</p>
+              <p class="result-card__delta" data-count="-0.9">−0.9s</p>
+              <p class="result-card__name">Martina G. — 3 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 2">
+              <div class="img-frame img-frame--circle" data-label="foto-federico.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-federico.jpg" alt="Foto de Federico A.">
+              </div>
+              <p class="result-card__track">Nürburgring Nordschleife</p>
+              <p class="result-card__delta" data-count="-2.1">−2.1s</p>
+              <p class="result-card__name">Federico A. — 6 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 3">
+              <div class="img-frame img-frame--circle" data-label="foto-sol.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-sol.jpg" alt="Foto de Sol M.">
+              </div>
+              <p class="result-card__track">Interlagos</p>
+              <p class="result-card__delta" data-count="-0.7">−0.7s</p>
+              <p class="result-card__name">Sol M. — 2 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 4">
+              <div class="img-frame img-frame--circle" data-label="foto-joaquin.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-joaquin.jpg" alt="Foto de Joaquín P.">
+              </div>
+              <p class="result-card__track">Monza</p>
+              <p class="result-card__delta" data-count="-1.5">−1.5s</p>
+              <p class="result-card__name">Joaquín P. — 5 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 5">
+              <div class="img-frame img-frame--circle" data-label="foto-valeria.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-valeria.jpg" alt="Foto de Valeria S.">
+              </div>
+              <p class="result-card__track">Silverstone</p>
+              <p class="result-card__delta" data-count="-0.8">−0.8s</p>
+              <p class="result-card__name">Valeria S. — 3 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 6">
+              <div class="img-frame img-frame--circle" data-label="foto-carlos.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-carlos.jpg" alt="Foto de Carlos H.">
+              </div>
+              <p class="result-card__track">Barcelona</p>
+              <p class="result-card__delta" data-count="-1.8">−1.8s</p>
+              <p class="result-card__name">Carlos H. — 7 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 7">
+              <div class="img-frame img-frame--circle" data-label="foto-ana.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-ana.jpg" alt="Foto de Ana R.">
+              </div>
+              <p class="result-card__track">Red Bull Ring</p>
+              <p class="result-card__delta" data-count="-1.1">−1.1s</p>
+              <p class="result-card__name">Ana R. — 4 semanas</p>
+            </article>
+
+<article class="result-card orbit-item" style="--orbit-index: 8">
+              <div class="img-frame img-frame--circle" data-label="foto-pedro.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-pedro.jpg" alt="Foto de Pedro L.">
+              </div>
+              <p class="result-card__track">Paul Ricard</p>
+              <p class="result-card__delta" data-count="-1.3">−1.3s</p>
+              <p class="result-card__name">Pedro L. — 4 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 9">
+              <div class="img-frame img-frame--circle" data-label="foto-lucia.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-lucia.jpg" alt="Foto de Lucía M.">
+              </div>
+              <p class="result-card__track">Mugello</p>
+              <p class="result-card__delta" data-count="-0.6">−0.6s</p>
+              <p class="result-card__name">Lucía M. — 2 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 10">
+              <div class="img-frame img-frame--circle" data-label="foto-diego.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-diego.jpg" alt="Foto de Diego R.">
+              </div>
+              <p class="result-card__track">Hungaroring</p>
+              <p class="result-card__delta" data-count="-1.9">−1.9s</p>
+              <p class="result-card__name">Diego R. — 5 semanas</p>
+            </article>
+
+            <article class="result-card orbit-item" style="--orbit-index: 11">
+              <div class="img-frame img-frame--circle" data-label="foto-sofia.jpg">
+                <span class="img-frame__icon" aria-hidden="true"><i data-lucide="user"></i></span>
+                <img src="assets/img/piloto-sofia.jpg" alt="Foto de Sofía P.">
+              </div>
+              <p class="result-card__track">Zandvoort</p>
+              <p class="result-card__delta" data-count="-1.4">−1.4s</p>
+              <p class="result-card__name">Sofía P. — 4 semanas</p>
+            </article>
+
+
+          </div>
+        </div>
+
+        <!-- Volante en la parte inferior -->
+        <picture class="steering-wheel-image">
+          <source media="(min-width: 768px)" srcset="assets/img/recorte-volante-d.png">
+          <img src="assets/img/recorte-volante-d.png" alt="Volante de carrera">
+        </picture>
+      </div>
+
+    </section>
+
+
+    <!-- ============================================================
+         SECCIÓN 8 — FOOTER + CTA FINAL
+         Formulario de aplicación con tono de "ficha de escudería".
+    ============================================================ -->
+    <section id="aplicar" class="apply section">
+      <div class="blueprint-grid" aria-hidden="true"></div>
+      <div class="container apply__inner">
+
+        <div class="apply__intro reveal">
+          <p class="eyebrow">Ficha de inscripción</p>
+          <h2 class="section__title"><span class="text-soft">Cupos limitados</span> por temporada de análisis.</h2>
+          <p class="section__lead">
+            Aplicá solo si estás listo/a para entrenar en serio. No vendemos horas de simulador,
+            vendemos resultados medibles.
+          </p>
+          <ul class="apply__bullets">
+            <li><i data-lucide="check-circle" aria-hidden="true"></i> Respuesta en menos de 48 horas</li>
+            <li><i data-lucide="check-circle" aria-hidden="true"></i> Evaluamos tu perfil antes de asignarte instructor</li>
+            <li><i data-lucide="check-circle" aria-hidden="true"></i> Sin compromiso de permanencia</li>
+          </ul>
+        </div>
+
+        <!-- Formulario de aplicación -->
+        <form class="apply__form reveal" id="applyForm" novalidate>
+          <div class="form-row">
+            <label for="fullName">Nombre completo</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Tu nombre y apellido" required>
+          </div>
+
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+          </div>
+
+          <div class="form-row form-row--split">
+            <div>
+              <label for="simRig">Simulador que usás</label>
+              <select id="simRig" name="simRig" required>
+                <option value="" disabled selected>Elegí una opción</option>
+                <option value="iracing">iRacing</option>
+                <option value="acc">Assetto Corsa Competizione</option>
+                <option value="rfactor2">rFactor 2</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div>
+              <label for="level">Nivel actual</label>
+              <select id="level" name="level" required>
+                <option value="" disabled selected>Elegí una opción</option>
+                <option value="iniciando">Iniciando en serio</option>
+                <option value="ligas">Compito en ligas</option>
+                <option value="esports">Apunto a e-sports</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="message">Contanos tu objetivo (opcional)</label>
+            <textarea id="message" name="message" rows="3"
+              placeholder="Ej: quiero bajar 1 segundo en GT3 antes de la próxima temporada de ligas."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--laser btn--full">Enviar aplicación</button>
+
+          <!-- Mensaje de confirmación, oculto hasta que se envíe el form (ver script.js) -->
+          <p class="apply__success" id="applySuccess" role="status" hidden>
+            Aplicación recibida. Te contactamos en menos de 48hs si tu perfil encaja con el programa.
+          </p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__brand">
+        <a href="#hero" class="logo">
+          <span class="logo__mark" aria-hidden="true">◢</span>
+          <img src="assets/img/marca.svg" alt="Apex" class="logo__icon">
+        </a>
+        <p>Academia de sim-racing de alto rendimiento.</p>
+      </div>
+
+      <nav class="site-footer__links" aria-label="Navegación de footer">
+        <a href="#manifiesto">Manifiesto</a>
+        <a href="#telemetria">Telemetría</a>
+        <a href="#ingenieria">Ingeniería</a>
+        <a href="#programas">Programas</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#aplicar">Aplicar</a>
+      </nav>
+
+      <div class="site-footer__social" aria-label="Redes sociales">
+        <a href="#" aria-label="WhatsApp"><i data-lucide="phone" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i data-lucide="camera" aria-hidden="true"></i></a>
+        <a href="#" aria-label="X"><i data-lucide="share-2" aria-hidden="true"></i></a>
+      </div>
+    </div>
+
+    <div class="site-footer__legal container">
+      <p>© 2026 Apex Sim-Racing Academy. Todos los derechos reservados.</p>
+      <p class="mono">DOC APX // REV.01</p>
+    </div>
+  </footer>
+
+  <!-- Script propio -->
+  <script src="script.js" defer></script>
+</body>
+
+</html>
